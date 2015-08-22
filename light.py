@@ -13,3 +13,5 @@ GPIO.output(led, 1)
 time.sleep(5)
 
 GPIO.output(led, 0)
+
+GPIO.cleanup()
