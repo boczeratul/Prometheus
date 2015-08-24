@@ -4,6 +4,7 @@ from multiprocessing import Pool
 
 import alarm
 import light
+import danboard
 import logging
 
 app = Flask(__name__)
@@ -28,4 +29,5 @@ def index_page():
     return render_template('index.html')
 
 if __name__ == "__main__":
+    pool.apply_async(danboard.danboard, [])
     app.run(host='0.0.0.0')
