@@ -1,23 +1,24 @@
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
-
-led = 4
+outPin = 4
 interval = 1
+repeat = 2
 
-GPIO.setup(led, GPIO.OUT)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(outPin, GPIO.OUT)
 
-GPIO.output(led, 1)
-time.sleep(interval)
+# Warm up alarm
+GPIO.output(outPin, 1)
+time.sleep(2)
 
-GPIO.output(led, 0)
-time.sleep(interval)
+for x in range(0, repeat):
+    GPIO.output(outPin, 0)
+    time.sleep(interval)
 
-GPIO.output(led, 1)
-time.sleep(interval)
+    GPIO.output(outPin, 1)
+    time.sleep(interval)
 
-GPIO.output(led, 0)
-time.sleep(interval)
+GPIO.output(outPin, 0)
 
 GPIO.cleanup()
