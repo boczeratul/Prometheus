@@ -10,7 +10,7 @@ pool = Pool()
 
 @app.route("/alarm")
 def hello():
-    pool.apply_async(alarm.alarm, [])
+    pool.apply_async(alarm.alarm_mp3, [])
     pool.apply_async(light.light, [])
     logging.warning('Alarm!')
     return "Alarm sent!"

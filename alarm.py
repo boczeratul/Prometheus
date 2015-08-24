@@ -1,8 +1,14 @@
 import RPi.GPIO as GPIO
 import time
+import pygame
 
 outPin = 4
 repeat = 3
+
+def alarm_mp3():
+    pygame.mixer.init()
+    pygame.mixer.music.load("./warning.mp3")
+    pygame.mixer.music.play()
 
 def alarm():
     GPIO.setwarnings(False)
