@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import common
+import light
 
 repeat = 3
 speaker = 4
@@ -8,15 +9,8 @@ led = 17
 default_alarm = './assets/warning_1.mp3'
 
 def alarm_mp3_with_light(mp3):
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led, GPIO.OUT)
-    GPIO.output(led, 1)
-
     common.play_mp3(mp3)
-
-    GPIO.output(led, 0)
-    GPIO.cleanup()
+    light.start_speak()
 
 def alarm_mp3(mp3):
     pygame.mixer.init()

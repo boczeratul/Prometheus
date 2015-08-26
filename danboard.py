@@ -1,27 +1,27 @@
 import RPi.GPIO as GPIO
 import time
-import random
+# import random
 import common
+import light
+import pygame
 
-led = 17
+rest_time = 30
 
 def danboard():
-    GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led, GPIO.OUT)
-
     index = 1
 
+    pygame.mixer.init()
+
     while True:
-        GPIO.output(led, 1)
+        if pygame.mixer.music.get_busy() == True:
+            time.sleep(rest_time)
+            continue
         common.play_mp3('./assets/r2d2_' + str(index) + '.mp3')
-        GPIO.output(led, 0)
+        light.start_speak()
         index += 1
         if index == 11:
             index = 1
-        time.sleep(20)
-    
-    GPIO.cleanup()
+        time.sleep(rest_time)
 
 if __name__ == '__main__':
     # test1.py executed as script
